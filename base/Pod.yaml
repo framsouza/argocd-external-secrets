@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: redis
+    volumeMounts:
+    - name: mysecret
+      mountPath: "/etc/vault-secrets"
+      readOnly: true
+  volumes:
+  - name: mysecret
+    secret:
+      secretName: my-eso-secret
